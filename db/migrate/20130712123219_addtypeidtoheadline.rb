@@ -1,10 +1,10 @@
-class Chagngelikename < ActiveRecord::Migration
-  def up
-    rename_column :likes, :like, :tof
+class Addtypeidtoheadline < ActiveRecord::Migration
+  
+  
+  def change
+    add_column :headlines, :type_id, :integer
   end
 
-  def down
-    rename_column :likes, :tof, :like
-  end
+
 
 end
