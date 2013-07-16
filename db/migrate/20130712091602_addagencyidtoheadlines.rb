@@ -1,8 +1,8 @@
-class Addagencyidtoheadlines < ActiveRecord::Migration
+class Addtypeidtoheadline < ActiveRecord::Migration
   
   
   def change
-    add_column :headlines, :agency_id, :integer
+    add_column :headlines, :type_id, :integer
   end
 
 
