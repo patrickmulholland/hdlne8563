@@ -1,0 +1,62 @@
+<%= form_for(@headline) do |f| %>
+  <% if @headline.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@headline.errors.count, "error") %> prohibited this headline from being saved:</h2>
+
+      <p>
+      <% @headline.errors.full_messages.each do |msg| %>
+        <%= msg %>
+      <% end %>
+  </p>
+    </div>
+  <% end %>
+  
+
+
+  <div class="field">
+    <%= f.hidden_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :head %>
+    <%= f.text_field :head, :autofocus=>true %>
+  </div>
+  <div class="field">
+    <%= f.label :sub %>
+    <%= f.text_field :sub %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :client_name %>
+    <%= f.text_field :client_name, data: {autocomplete_source: clients_path} %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Tags: (Some Keywords, comma seperated)" %>
+    <%= f.text_field :tags %>
+  </div>  
+  
+  <div class="footer_1">
+  
+	  <div class="footer_1_left">
+  <div class="field">
+  <%= f.label :category %>
+  <%= f.collection_select :category_id, @mycategories, :id, :name, :prompt => "Select a Category" %>
+  </div>
+  
+
+  <div class="field">
+  <%= f.label :type %>
+  <%= f.collection_select :type_id, @mytypes, :id, :name, :prompt => "Select a Type" %>
+  </div>
+</div>
+    
+<div class="footer_1_right">
+    <%= f.submit :class => "button gray" %>
+
+
+<% end %>
+
+<%= link_to 'Back', headlines_path, :class => "button gray" %>
+
+</div>
+</div>

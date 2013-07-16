@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>hdlne.com - Submit your unused Headlines - Get inspired by others!</title>
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "normalize", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	
+<div id="wrapper">
+	
+	<div id="header">
+		<%= link_to "", root_path, :class => "logo" %>
+		<div class="login_status">
+			<div class="login_status_container">
+	<% if user_signed_in? %>
+	
+  <% if current_user.profile %>
+   <%= link_to current_user.profile.username, current_user.profile %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <% end %>
+	
+	  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+	  
+	<% else %>
+	  <%= link_to "Sign up", new_user_registration_path %> |
+	  <%= link_to "Login", new_user_session_path %>
+	<% end %>
+</div>
+</div>
+	</div>
+	
+	<div id="subheader">
+		<% if user_signed_in? && current_user.profile %>
+		
+	
+		  <%= link_to 'All Headlines', root_path, :class => "button gray" %>
+		  <%= link_to 'Submit Headlines', new_headline_path, :class => "button gray" %>
+
+			
+		<% else %>
+		&nbsp;
+		<% end %>
+	</div>
+	
+	<% if flash.count > 0 %>
+	<div id="flasher">
+		<% flash.each do |name, message| %>
+		<p><%= "#{message}" %></p>
+		<% end %>
+	</div>
+	<% end %>
+
+
+<%= yield %>
+
+</div>
+
+<div id="footer">
+	<div class="footer_span">
+	<p>© 2013 hdlne.com&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		
+		<% if user_signed_in? %>
+				
+		<%= link_to "Top 10 - Blessed Headlines", top_10_path %>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		
+		<%= link_to "Top 10 - Submitting Users", top_users_path %>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+		
+		
+		<% end %>
+		
+		About</p>
+</div>
+
+
+
+</div >
+
+
+</body>
+</html>

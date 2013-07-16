@@ -1,0 +1,46 @@
+<div class="show_form_1">
+
+
+
+<h3><%= @profile.username %></h3>
+
+<p>
+  <b>Name:</b>
+  <%= @profile.firstname %>
+</p>
+
+<p>
+  <b>Lastname:</b>
+  <%= @profile.lastname %>
+</p>
+
+<p>
+  <b>Agency:</b>
+  <%= @profile.agency.name %>
+</p>
+
+<p>
+<b>Submitted Headlines:</b>	
+<% if @profile.user.headlines.count > 0 %>
+<%= link_to @profile.user.headlines.count, user_lines_path(:id => @profile.user.id) %>
+<% else %>
+0
+<% end %>
+</p>
+
+<div class="one_button">
+
+
+<% if @profile.user == current_user %>
+
+<%= link_to 'Edit Profile', edit_profile_path, :class => "button gray"%>
+<%= link_to "Edit Login", edit_user_registration_path, :class => "button gray"%>
+
+<% end%>	
+	
+	
+	
+<%= link_to 'Back', root_path, :class => "button gray" %>
+</div>
+
+</div>

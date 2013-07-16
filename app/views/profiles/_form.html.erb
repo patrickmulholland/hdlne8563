@@ -1,0 +1,39 @@
+<%= form_for(@profile) do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <% @profile.errors.full_messages.each do |msg| %>
+      <p>
+        <%= msg %></p>
+      <% end %>
+
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :firstname %>
+    <%= f.text_field :firstname %>
+  </div>
+  <div class="field">
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :agency_name %>
+    <%= f.text_field :agency_name, data: {autocomplete_source: agencies_path} %>
+  </div>
+
+
+  <div class="one_button">
+      <%= f.submit :class => "button gray" %>
+  </div>
+<% end %>

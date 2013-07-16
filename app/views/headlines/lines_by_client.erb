@@ -1,0 +1,56 @@
+
+<div class="special_select">
+
+		<h1>Headlines for <%= @headlines.first.client.name %>:</h1>
+
+	</div>
+
+
+
+
+<% unless @headlines.count == 0 %>
+
+
+<div class="linewrapper">
+	
+  	<div class="picker">
+  		<div class="oneline_left_picker">
+  			<p class="einzug">Headlines:</p>
+  		</div>
+  		<div class="oneline_right_picker">
+  			<p>Sublines:</p>
+  		</div>
+  	</div>
+
+
+<% @headlines.each do |headline| %>
+	<div class="<%= cycle("oneline_dark", "oneline")%>">
+		<div class="oneline_left">
+			<%= link_to truncate(headline.head, :length => 65), headline %>
+		</div>
+		<div class="oneline_right">
+			<%= link_to truncate(headline.sub, :length => 60), headline %>
+			<% if headline.user == current_user %>
+			<%= link_to "(E)", edit_headline_path(headline) %>
+		    <%= link_to '(D)', headline, method: :delete, data: { confirm: 'Are you sure?' } %>
+		
+			<% end %>
+	
+		</div>
+	</div>
+	
+	<% end %>
+	
+	
+</div>
+
+<div class="pagination_container">
+<div class="flickr_pagination">
+<%= will_paginate @headlines %>
+</div></div>
+
+<br />
+
+<% else %>
+
+<% end %>

@@ -1,0 +1,88 @@
+<div class="show_form_1">
+	
+
+	<h1><%= @headline.head %></h1>
+
+	<h2><%= @headline.sub %></h2>
+	
+	
+	
+<p>
+  <b>Username:</b>
+  <%= link_to @headline.user.profile.username, @headline.user.profile %>
+</p>
+
+
+
+<% if @headline.client %>
+
+<p>
+  <b>Client:</b>
+  <%= link_to @headline.client.name, client_lines_path(:client => @headline.client) %>
+</p>
+
+<% end %>
+
+<% if @headline.tags %>
+
+<p>
+  <b>Tags:</b>
+  <%= @headline.tags %>
+</p>
+
+<% end %>
+
+<% if @headline.category %>
+
+<p>
+  <b>Category:</b>
+  <%= @headline.category.name %>
+</p>
+
+<% end %>
+
+
+<% if @headline.type %>
+<p>
+  <b>Type:</b>
+  <%= @headline.type.name %>
+</p>
+
+<% end %>
+
+
+
+
+
+<div class="more_buttons">
+	
+	<% if @headline.user == current_user %>
+	
+	<%= link_to 'Edit', edit_headline_path, :class => "button gray" %>
+	
+	<% end %>
+	
+<%= link_to 'Back', headlines_path, :class => "button gray" %>
+
+
+
+<% if @headline.user != current_user %>
+
+<% if @headline.likes.where(:user_id => current_user).count == 0 %>
+
+<%= link_to 'Bless this line!', new_like_path(:id => [@headline.id]), :class => "button gray", confirm: "Oh my God - Bless this line?" %>
+
+<% end %>
+
+<% end %>
+
+
+
+
+
+
+
+
+</div>
+
+</div>

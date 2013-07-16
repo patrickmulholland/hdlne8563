@@ -1,0 +1,59 @@
+<h1>Headlines by <%= @headlines.first.user.profile.username %></h1>
+
+<% unless @headlines.count == 0 %>
+
+
+
+<div class="linewrapper">
+	
+  	<div class="picker">
+  		<div class="oneline_left_picker">
+  			Headlines:
+  		</div>
+  		<div class="oneline_right_picker">
+  			Sublines:
+  		</div>
+  	</div>
+	
+	<% @headlines.each do |headline| %>
+
+	
+	
+	<div class="<%= cycle("oneline_dark", "oneline")%>">
+		<div class="oneline_left">
+			<%= link_to headline.head, headline %>
+		</div>
+		<div class="oneline_right">
+			<%= link_to headline.sub, headline %>
+			<% if headline.user == current_user %>
+			<%= link_to "(E)", edit_headline_path(headline) %>
+		    <%= link_to '(D)', headline, method: :delete, data: { confirm: 'Are you sure?' } %>
+		
+			<% end %>
+	
+		</div>
+		
+		
+	</div>
+	
+	<% end %>
+	
+	
+</div>
+
+<div class="pagination_container">
+<div class="flickr_pagination">
+<%= will_paginate @headlines %>
+</div></div>
+
+
+<% else %>
+
+<h1>You have not submitted any headlines</h1>
+
+<% end %>
+
+<%= link_to 'Back', headlines_path %>
+
+-----
+

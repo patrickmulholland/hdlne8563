@@ -1,0 +1,21 @@
+<div class="input_form_1">
+
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field"><%= f.label :email %>
+  <%= f.email_field :email, :autofocus => true %></div>
+
+
+
+  <div class="more_buttons">
+
+  <div><%= f.submit "Send me reset password instructions", :class => "button gray"%></div>
+<% end %>
+
+
+<%= link_to "Sign in", new_user_session_path, :class => "button gray" %>
+
+<%= link_to "Sign up", new_user_registration_path, :class => "button gray" %>
+</div>
+</div>

@@ -1,0 +1,94 @@
+
+<div id="search_area">
+
+	<div class="search_left">
+<%= search_form_for @search do |f| %>
+
+<div class="select_box">
+	<%= f.label :category_id_matches, "Category:" %>
+	<%= f.select("category_id_matches", Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'All'}) %>
+</div>
+
+<div class="select_box">
+	<%= f.label :type_id_matches, "Type:" %>
+	<%= f.select("type_id_matches", Type.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'All'}) %>
+</div>
+
+
+
+<div class="select_box"><%= f.submit "Go" %></div>
+
+</div>
+
+<div class="search_right">
+
+	<div class="search_field">
+		<%= f.text_field :head_or_sub_or_tags_cont %>
+	</div>
+
+
+</div>
+
+<% end %>
+
+</div>
+
+
+
+
+
+<div class="linewrapper">
+	
+  	<div class="picker">
+  		<div class="oneline_left_picker">
+  			<%= sort_link @search, :head, "Headlines:" %>
+  		</div>
+  		<div class="oneline_right_picker">
+  			<%= sort_link @search, :sub, "Sublines:" %>
+  		</div>
+  	</div>
+	
+	<% @headlines.each do |headline| %>
+
+	
+	
+	<div class="<%= cycle("oneline_dark", "oneline")%>">
+		<div class="oneline_left">
+			<%= link_to truncate(headline.head, :length => 65), headline, :title => headline.head %>
+		</div>
+		<div class="oneline_right">
+			<%= link_to truncate(headline.sub, :length => 60), headline, :title => headline.sub %>
+						
+			<% if headline.user == current_user %>
+			<%= link_to "", edit_headline_path(headline), :class => "edit_icon", :title => "Edit" %>
+		    <%= link_to "", headline, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete_icon", :title => "Delete" %>
+			<% end %>
+			
+			
+			
+			<% if headline.user != current_user %>
+			
+			<% if headline.likes.where(:user_id => current_user).count == 0 %>
+			
+			<%= link_to "", new_like_path(:id => [headline.id]), :class => "bless_icon", :title => "Bless this Line!", confirm: "Oh my God - Bless this line?"%>
+			
+			<% end %>
+			
+			<% end %>
+			
+			
+			
+		</div>
+	</div>
+	
+	<% end %>
+	
+	
+</div>
+
+<div class="pagination_container">
+<div class="flickr_pagination">
+<%= will_paginate @headlines %>
+</div></div>
+
+<br />

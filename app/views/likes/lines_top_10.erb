@@ -1,0 +1,41 @@
+
+
+<div class="special_select">
+
+		<h1>Top 10 - Blessed Headlines:</h1>
+
+	</div>
+
+
+
+<div class="linewrapper">
+	
+  	<div class="picker">
+  		<div class="oneline_left_picker">
+  			<p class="einzug">Headline:</p>
+  		</div>
+  		<div class="oneline_right_picker">
+  			<p>Number of Blessings:</p>
+  		</div>
+  	</div>
+
+
+<% @likes.each do |like|%>
+	<div class="<%= cycle("oneline_dark", "oneline")%>">
+		<div class="oneline_left">
+			<%= link_to truncate(like.headline.head, :length => 65), like.headline %>
+		</div>
+		<div class="oneline_right">
+			<%= link_to like.like_count, like.headline %>
+		
+		</div>
+	</div>
+	
+	<% end %>
+	
+	
+</div>
+
+
+
+
