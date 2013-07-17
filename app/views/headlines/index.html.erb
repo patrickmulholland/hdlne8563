@@ -6,12 +6,12 @@
 
 <div class="select_box">
 	<%= f.label :category_id_matches, "Category:" %>
-	<%= f.select("category_id_matches", Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'All'}) %>
+	<%= f.select("category_id_eq", Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'All'}) %>
 </div>
 
 <div class="select_box">
 	<%= f.label :type_id_matches, "Type:" %>
-	<%= f.select("type_id_matches", Type.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'All'}) %>
+	<%= f.select("type_id_eq", Type.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'All'}) %>
 </div>
 
 
